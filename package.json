@@ -1,0 +1,28 @@
+{
+  "name": "botkit-meetings",
+  "version": "0.0.1",
+  "description": "A Simple BotKit app for starting meetings",
+  "main": "meetings-app.js",
+  "scripts": {
+    "start": "node meetings-app.js"
+  },
+  "dependencies": {
+    "botkit": "^0.5"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/weddle/botkit-meetings.git"
+  },
+  "bugs": {
+    "url": "https://github.com/weddle/botkit-meetings/issues"
+  },
+  "homepage": "https://github.com/weddle/botkit-meetings,
+  "keywords": [
+    "botkit",
+    "webex",
+    "spark"
+  ],
+  "author": "weddle@gmail.com",
+  "license": "MIT"
+}
