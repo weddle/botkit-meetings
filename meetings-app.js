@@ -32,19 +32,19 @@ controller.on('slash_command', function(slashcom, msg) {
   switch(msg.command) {
     case "/webex" : // handle the '/webex' slash command
       slashcom.replyPublic(msg,
-        userLink(msg) + " has scheduled a WebEx meeting.\n"
+        userLink(msg) + " has scheduled an instant WebEx meeting.\n"
         + "<" + getPmrLink(msg.user_name, "go.webex.com") +"|Click here to join with WebEx>");
     break;
 
     case "/spark" : // handle the '/spark' slash command
       slashcom.replyPublic(msg,
-        userLink(msg) + " has scheduled a meeting.\n"
+        userLink(msg) + " has started a meeting.\n"
         + "<" + getSparkLink(msg.user_name, "go.webex.com") +"|Click here to join with Spark>");
     break;
 
     case "/pmr" : // test case for richer '/pmr' slash command
       slashcom.replyPublic(msg,
-      userLink(msg) + " has scheduled a WebEx meeting.\n"
+      userLink(msg) + " has scheduled an instant WebEx meeting.\n"
       + "<" + getPmrLink(msg.user_name, "go.webex.com") +"|Click here to join with WebEx>\n"
       + "<" + getSparkLink(msg.user_name, "go.webex.com") +"|Click here to join with Spark>");
     break;
