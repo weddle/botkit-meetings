@@ -7,7 +7,8 @@
     "start": "node meetings-app.js"
   },
   "dependencies": {
-    "botkit": "^0.5"
+    "botkit": "^0.5",
+    "node-env-file": "^0.1.8"
   },
   "devDependencies": {},
   "repository": {
@@ -17,7 +18,7 @@
   "bugs": {
     "url": "https://github.com/weddle/botkit-meetings/issues"
   },
-  "homepage": "https://github.com/weddle/botkit-meetings,
+  "homepage": "https://github.com/weddle/botkit-meetings",
   "keywords": [
     "botkit",
     "webex",
