@@ -32,21 +32,31 @@ controller.on('slash_command', function(slashcom, msg) {
   switch(msg.command) {
     case "/webex" : // handle the '/webex' slash command
       slashcom.replyPublic(msg,
-        "<https://go.webex.com/meet/" + msg.user_name + "|Join " + msg.user_name + "'s PMR with WebEx>");
-    break;
-    case "/spark" : // handle the '/spark' slash command
-      slashcom.replyPublic(msg,
-        "<ciscospark://pmr?sip=" + msg.user_name +
-        "@go.webex.com&url=https://go.webex.com/meet/" + msg.user_name +
-        "|Join " + msg.user_name + "'s PMR with Spark>");
+        "<" + getPmrLink(msg.user_name, "go.webex.com") + "|Join " + msg.user_name + "'s PMR with WebEx>");
     break;
 
-    case "/webextest" : // test case for richer '/webex' slash command
+    case "/spark" : // handle the '/spark' slash command
       slashcom.replyPublic(msg,
-        "<https://go.webex.com/meet/" + msg.user_name + "|Join " + msg.user_name + "'s PMR with WebEx>");
+        "<" + getSparkLink(msg.user_name, "go.webex.com") + "|Join " + msg.user_name + "'s PMR with Spark>");
+    break;
+
+    case "/pmr" : // test case for richer '/pmr' slash command
+      slashcom.replyPublic(msg,
+        "<" + getSparkLink(msg.user_name, "go.webex.com") + "|Join " + msg.user_name + "'s PMR with Spark>");
     break;
 
     default:
     slashcom.replyPublic(msg, "I'm sorry, I don't understand: " + msg.command);
   }
 });
+
+
+// Helper Functions
+
+function getPmrLink (username, pmr_domain) {
+  return "https://" + pmr_domain + "/meet/" + username;
+}
+
+function getSparkLink (username, pmr_domain) {
+  return "ciscospark://pmr?sip=" + username + "@" + pmr_domain + "&url=" + getPmrLink(username, pmr_domain);
+}
