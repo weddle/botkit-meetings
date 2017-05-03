@@ -32,17 +32,21 @@ controller.on('slash_command', function(slashcom, msg) {
   switch(msg.command) {
     case "/webex" : // handle the '/webex' slash command
       slashcom.replyPublic(msg,
-        "<" + getPmrLink(msg.user_name, "go.webex.com") + "|Join " + msg.user_name + "'s PMR with WebEx>");
+        userLink(msg) + " has scheduled a WebEx meeting.\n"
+        + "<" + getPmrLink(msg.user_name, "go.webex.com") +"|Click here to join with WebEx>");
     break;
 
     case "/spark" : // handle the '/spark' slash command
       slashcom.replyPublic(msg,
-        "<" + getSparkLink(msg.user_name, "go.webex.com") + "|Join " + msg.user_name + "'s PMR with Spark>");
+        userLink(msg) + " has scheduled a WebEx meeting.\n"
+        + "<" + getSparkLink(msg.user_name, "go.webex.com") +"|Click here to join with Spark>");
     break;
 
     case "/pmr" : // test case for richer '/pmr' slash command
       slashcom.replyPublic(msg,
-        "<" + getSparkLink(msg.user_name, "go.webex.com") + "|Join " + msg.user_name + "'s PMR with Spark>");
+      userLink(msg) + " has scheduled a WebEx meeting.\n"
+      + "<" + getPmrLink(msg.user_name, "go.webex.com") +"|Click here to join with WebEx>\n"
+      + "<" + getSparkLink(msg.user_name, "go.webex.com") +"|Click here to join with Spark>");
     break;
 
     default:
@@ -52,6 +56,10 @@ controller.on('slash_command', function(slashcom, msg) {
 
 
 // Helper Functions
+
+function userLink (msg) {
+  return "<@" + msg.user + "|" + msg.user_name + ">";
+}
 
 function getPmrLink (username, pmr_domain) {
   return "https://" + pmr_domain + "/meet/" + username;
