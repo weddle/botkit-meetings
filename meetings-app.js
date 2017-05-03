@@ -38,7 +38,7 @@ controller.on('slash_command', function(slashcom, msg) {
 
     case "/spark" : // handle the '/spark' slash command
       slashcom.replyPublic(msg,
-        userLink(msg) + " has scheduled a WebEx meeting.\n"
+        userLink(msg) + " has scheduled a meeting.\n"
         + "<" + getSparkLink(msg.user_name, "go.webex.com") +"|Click here to join with Spark>");
     break;
 
