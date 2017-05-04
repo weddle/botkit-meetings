@@ -1,12 +1,15 @@
 var env = require('node-env-file');
+var Botkit = require('botkit');
 env(__dirname + '/.env');
 
-if (!process.env.CLIENT_ID || !process.env.CLIENT_SECRET || !process.env.VERIFICATION_TOKEN || !process.env.PORT) {
-  console.log('ERROR: Specify CLIENT_ID, CLIENT_SECRET, VERIFICATION_TOKEN, PORT');
+if (!process.env.CLIENT_ID || !process.env.CLIENT_SECRET || !process.env.VERIFICATION_TOKEN || !process.env.PORT || !process.env.WEBEX_SITE) {
+  console.log('ERROR: Specify CLIENT_ID, CLIENT_SECRET, VERIFICATION_TOKEN, PORT, WEBEX_SITE');
   process.exit(1);
 }
 
-var Botkit = require('botkit');
+var webex_site = process.env.WEBEX_SITE;
+
+
 
 var options = {
   clientId: process.env.CLIENT_ID,
@@ -23,7 +26,7 @@ controller.setupWebserver(process.env.PORT, function (err, webserver) {
     if (err) {
       res.status(500).send('Error with OAuth : ' + err);
     } else {
-      res.send('Success adding botkit-meetings!');
+      res.send('Successfully added botkit-meetings!');
     }
   });
 });
@@ -33,20 +36,20 @@ controller.on('slash_command', function(slashcom, msg) {
     case "/webex" : // handle the '/webex' slash command
       slashcom.replyPublic(msg,
         userLink(msg) + " has scheduled an instant WebEx meeting.\n"
-        + "<" + getPmrLink(msg.user_name, "go.webex.com") +"|Click here to join with WebEx>");
+        + "<" + getPmrLink(msg.user_name, webex_site) +"|Click here to join with WebEx>");
     break;
 
     case "/spark" : // handle the '/spark' slash command
       slashcom.replyPublic(msg,
         userLink(msg) + " has started a meeting.\n"
-        + "<" + getSparkLink(msg.user_name, "go.webex.com") +"|Click here to join with Spark>");
+        + "<" + getSparkLink(msg.user_name, webex_site) +"|Click here to join with Spark>");
     break;
 
     case "/pmr" : // test case for richer '/pmr' slash command
       slashcom.replyPublic(msg,
       userLink(msg) + " has scheduled an instant WebEx meeting.\n"
-      + "<" + getPmrLink(msg.user_name, "go.webex.com") +"|Click here to join with WebEx>\n"
-      + "<" + getSparkLink(msg.user_name, "go.webex.com") +"|Click here to join with Spark>");
+      + "<" + getPmrLink(msg.user_name, webex_site) +"|Click here to join with WebEx>\n"
+      + "<" + getSparkLink(msg.user_name, webex_site) +"|Click here to join with Spark>");
     break;
 
     default:
