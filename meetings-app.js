@@ -78,7 +78,6 @@ controller.on('slash_command', function(slashcom, msg) {
 
 // Helper Functions
 
-
 function userLink (msg) {
   return "<@" + msg.user + "|" + msg.user_name + ">";
 }
